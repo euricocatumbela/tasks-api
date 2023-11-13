@@ -1,4 +1,4 @@
-# Awesome Project Build with TypeORM
+# Task API project Build with TypeORM
 
 Steps to run this project:
 
