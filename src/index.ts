@@ -8,8 +8,6 @@ async function startServer() {
     schema,
   });
 
-
-
   const { url } = await server.listen(PORT);
   console.log(`Server is running, GraphQL Playground available at ${url}`);
 }

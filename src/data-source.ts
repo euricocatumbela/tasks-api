@@ -2,15 +2,26 @@ import "reflect-metadata"
 import { DataSource } from "typeorm"
 import { User } from "./entity/User"
 import { Task } from "./entity/Task"
+import { config } from "dotenv";
+config(); 
+
+const {
+  DB_HOST,
+  DB_PORT,
+  DB_USER,
+  DB_PASSWORD,
+  DB_NAME,
+} = process.env;
+
+const PORT: number = parseInt(DB_PORT || "", 10); 
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: "task-db-instance.c7iy5ull9gcc.us-east-1.rds.amazonaws.com",
-    port: 5432,
-    username: "postgres",
-    // password: "Cat47306!",
-    password: "postgress",
-    database: "initial_db",
+    host: DB_HOST,
+    port: PORT,
+    username: DB_USER,
+    password: DB_PASSWORD,
+    database: DB_NAME,
     ssl: {
       rejectUnauthorized: false
   },
@@ -23,7 +34,6 @@ export const AppDataSource = new DataSource({
 
 AppDataSource.initialize()
     .then(() => {
-        // here you can start to work with your database
         console.log("Database connected")
 
     })
